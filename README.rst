@@ -41,8 +41,12 @@ ckanext-oaipmh_repository
 Requirements
 ------------
 
-For example, you might want to mention here which versions of CKAN this
-extension works with.
+**Plugins required:** In order to use this plugin, the following dependencies/plugins must be installed
+
+* **ckanext-package_converter** --> https://github.com/sedici/ckanext-package_converter
+* **ckantoolkit** --> https://github.com/ckan/ckantoolkit
+* **ckanext-scheming** --> https://github.com/ckan/ckanext-scheming
+
 
 
 ------------
