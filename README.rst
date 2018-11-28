@@ -44,7 +44,6 @@ Requirements
 **Plugins required:** In order to use this plugin, the following dependencies/plugins must be installed
 
 * **ckanext-package_converter** --> https://github.com/sedici/ckanext-package_converter
-* **ckantoolkit** --> https://github.com/ckan/ckantoolkit
 * **ckanext-scheming** --> https://github.com/ckan/ckanext-scheming
 
 
@@ -76,16 +75,22 @@ To install ckanext-oaipmh_repository:
 .. code:: bash
 
     pip install -e git+https://github.com/sedici/ckanext-package_converter.git#egg=ckanext-package_converter
-    pip install -e git+https://github.com/ckan/ckantoolkit.git#egg=ckantoolkit
     pip install -e git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext-scheming
 
-4. Add configuration settings explained at `Config Settings <#config-settings>`__.
+4. Install every requeriments declared in each plugin.
 
-5. Add ``oaipmh_repository``, ``scheming-datasets``, ``package-converter`` to the ``ckan.plugins`` setting in your CKAN
+.. code:: bash
+
+   cd <plugin_dir>
+   pip install -r <req_file.txt> ### dev-requirements.txt or requirements.txt depending of the plugin...
+
+5. Add configuration settings explained at `Config Settings <#config-settings>`__.
+
+6. Add ``oaipmh_repository``, ``scheming-datasets``, ``package-converter`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
-6. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
+7. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
 
      sudo service apache2 reload
 
