@@ -21,7 +21,7 @@ import util
 
 class RecordAccessService(object):
 
-    def __init__(self, dateformat, id_prefix, id_field, regex, doi_solr_url, max_results = 1000, doi_index_params=[], local_tz='Europe/Berlin'):
+    def __init__(self, dateformat, id_prefix, id_field, regex, doi_solr_url, max_results = 1000, doi_index_params=[], local_tz='Europe/Berlin', check_doi_existence=False):
         self.dateformat = dateformat
         self.local_tz = local_tz
         self.id_prefix = id_prefix
@@ -29,6 +29,7 @@ class RecordAccessService(object):
         self.regex = regex
         self.max_results = max_results
         self.doi_index = None
+        self.use_doi = check_doi_existence
         if doi_index_params:
             self.doi_index = OAIPMHDOIIndex(doi_index_params[0], doi_index_params[1])
         self.doi_solr = DoiSolrNode(doi_solr_url, self.dateformat, self.local_tz)
@@ -44,8 +45,8 @@ class RecordAccessService(object):
         else:
             result = results[0]
 
-        ckan_id = result['package_id']
-        entity = result['entity']
+        ckan_id = result['id']
+        entity = result['entity_type']
         if entity == 'resource':
             ckan_id = result['resource_id']
         datestamp = result['datestamp']
@@ -64,8 +65,8 @@ class RecordAccessService(object):
         record_list['record'] = []
 
         for result in results:
-            ckan_id = result['package_id']
-            entity = result['entity']
+            ckan_id = result['id']
+            entity = result['entity_type']
             if entity == 'resource':
                 ckan_id = result['resource_id']
             datestamp = result['datestamp']
@@ -74,8 +75,9 @@ class RecordAccessService(object):
 
             if self.doi_index:
                 doi = result[self.id_field]
-                if not self.doi_index.check_doi(doi, ckan_id, entity):
-                    continue
+                if self.use_doi:
+                    if not self.doi_index.check_doi(doi, ckan_id, entity):
+                        continue
 
             record_list['record'] += [self._export_dataset(ckan_id, entity, oai_identifier, datestamp, format)['record']]
 

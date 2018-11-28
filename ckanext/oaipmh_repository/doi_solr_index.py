@@ -83,7 +83,7 @@ class DoiSolrNode(object):
                 query_text += ' metadata_modified:[{0} TO {1}]'.format(start_date_str, end_date_str)
 
             field_query = 'state:active capacity:public'
-            fields='package_id, resource_id, state, metadata_modified, entity, {0}, {1}'.format(field, 'extras_'+field)
+            fields='id, resource_id, state, metadata_modified, entity_type, {0}, {1}'.format(field, 'extras_'+field)
             results,size = self._solr_query(query_text, field_query, fields, max_rows, offset)
             # format the date
             for result in results:
