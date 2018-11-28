@@ -61,17 +61,31 @@ To install ckanext-oaipmh_repository:
 
 1. Activate your CKAN virtual environment, for example::
 
+.. code:: bash
+
      . /usr/lib/ckan/default/bin/activate
 
 2. Install the ckanext-oaipmh_repository Python package into your virtual environment::
 
-     pip install ckanext-oaipmh_repository
+.. code:: bash
 
-3. Add ``oaipmh_repository`` to the ``ckan.plugins`` setting in your CKAN
+     pip install -e git+https://github.com/sedici/ckanext-oaipmh_repository.git#egg=ckanext-oaipmh_repository
+
+3. Install the plugin dependencies
+
+.. code:: bash
+
+    pip install -e git+https://github.com/sedici/ckanext-package_converter.git#egg=ckanext-package_converter
+    pip install -e git+https://github.com/ckan/ckantoolkit.git#egg=ckantoolkit
+    pip install -e git+https://github.com/ckan/ckanext-scheming.git#egg=ckanext-scheming
+
+4. Add configuration settings explained at `Config Settings <#config-settings>`__.
+
+5. Add ``oaipmh_repository``, ``scheming-datasets``, ``package-converter`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
-4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
+6. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
 
      sudo service apache2 reload
 
