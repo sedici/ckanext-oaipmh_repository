@@ -80,12 +80,43 @@ To install ckanext-oaipmh_repository:
 Config Settings
 ---------------
 
-Document any optional config settings here. For example::
+The plugin may be configured through some configurations settings, described bellow.
 
-    # The minimum number of hours to wait before re-checking a resource
-    # (optional, default: 24).
-    ckanext.oaipmh_repository.some_setting = some_default_value
+.. code:: ini
 
+    ##############
+    ##OAIPMH Repository Configuration
+    ##############
+    ##Prefix used to construct the "Unique Identifier" of every OAI record. Defaults to "oai:ckan:id".
+    #oaipmh_repository.id_prefix = oai:ckan:id:
+    
+    ##Every OAI record has an "Unique Identifier". Use this setting to set the dataset metadata used as identifier. Defaults to "name".
+    #oaipmh_repository.id_field = name
+    
+    ##Limit the set of records exposed through OAIPMH to a certain regular expression (check Solr regular expression syntax). 
+    ##This configuration is used along with the "oaipmh_repository.id_field" configured. Defaults to "*".
+    #oaipmh_repository.regex = *
+    
+    ##Use this setting to limit the maximum number of records per page included in every OAI response. Defaults to 1000.
+    #oaipmh_repository.max = 1000
+    
+    oaipmh_repository.sqlalchemy.url = %(sqlalchemy.url)s
+    
+    oaipmh_repository.site_id = %(ckan.site_id)s
+    
+    oaipmh_repository.solr_url = %(solr_url)s
+    
+
+Additionaly, the following **ckanext-scheming** configuration settings must be added in order to this plugin works (more at `ckanext-scheming documentation <https://github.com/ckan/ckanext-scheming>`__).
+
+.. code:: ini
+
+    ##Scheming Configuration (sacar si no hace falta...)
+    #   module-path:file to schemas being used
+    scheming.dataset_schemas = ckanext.scheming:ckan_dataset.json
+    
+    #   Preset files may be included as well. The default preset setting is:
+    scheming.presets = ckanext.scheming:presets.json
 
 ------------------------
 Development Installation
