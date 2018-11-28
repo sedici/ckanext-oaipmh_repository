@@ -86,7 +86,7 @@ To install ckanext-oaipmh_repository:
 
 5. Add configuration settings explained at `Config Settings <#config-settings>`__.
 
-6. Add ``oaipmh_repository``, ``scheming-datasets``, ``package-converter`` to the ``ckan.plugins`` setting in your CKAN
+6. Add ``scheming_datasets``, ``package_converter``, ``oaipmh_repository`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
@@ -130,7 +130,7 @@ Additionaly, the following **ckanext-scheming** configuration settings must be a
 
 .. code:: ini
 
-    ##Scheming Configuration (sacar si no hace falta...)
+    ##Scheming Configuration
     #   module-path:file to schemas being used
     scheming.dataset_schemas = ckanext.scheming:ckan_dataset.json
     
