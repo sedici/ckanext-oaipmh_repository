@@ -125,8 +125,15 @@ The plugin may be configured through some configurations settings, described bel
     
     oaipmh_repository.solr_url = %(solr_url)s
     
+The following **ckanext-scheme-converter** configuration  settings must be activated in order to convert from a *default CKAN Dataset schema* to the *OAI DC Scheme* (more at `ckanext-sheme-converter documentation <https://github.com/sedici/ckanext-package_converter>`__).
 
-Additionaly, the following **ckanext-scheming** configuration settings must be added in order to this plugin works (more at `ckanext-scheming documentation <https://github.com/ckan/ckanext-scheming>`__).
+.. code:: ini
+   
+   # full path to converters (optional)
+   package_converter.converters =  ckanext.package_converter.custom.default_ckan_scheming_converter.DefaultCKANDatacite31SchemingConverter
+
+
+Additionally, the following **ckanext-scheming** configuration settings must be added in order to this plugin works (more at `ckanext-scheming documentation <https://github.com/ckan/ckanext-scheming>`__).
 
 .. code:: ini
 
